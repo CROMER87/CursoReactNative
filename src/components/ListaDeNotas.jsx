@@ -28,8 +28,7 @@ export default class ListaDeNotas extends Component {
             <p>Escreva Sua Nota</p>
           </section>
         </li>
-      </ul>
-      
+      </ul>     
     );
   }
 }
