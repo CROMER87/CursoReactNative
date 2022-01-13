@@ -12,7 +12,24 @@ export default class ListaDeNotas extends Component {
             <p>Escreva Sua Nota</p>
           </section>
         </li>
+        <li>
+          <section>
+            <header>
+              <h3>Título</h3>
+            </header>
+            <p>Escreva Sua Nota</p>
+          </section>
+        </li>
+        <li>
+          <section>
+            <header>
+              <h3>Título</h3>
+            </header>
+            <p>Escreva Sua Nota</p>
+          </section>
+        </li>
       </ul>
+      
     );
   }
 }
