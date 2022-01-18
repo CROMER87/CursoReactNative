@@ -1,78 +1,46 @@
-import React, { Component } from "react";
-import "./estilo.css";
-class FormularioCadastro extends Component {
-  constructor(props) {
-    super(props);
-    this.titulo = "";
-    this.texto = "";
-    this.categoria = "Sem Categoria";
-    this.state = {categorias:[]}
+import React from "react";
+import Button from "@material-ui/core/Button";
+import { Switch, FormControlLabel, TextField } from "@material-ui/core";
 
-    this._novasCategorias = this._novasCategorias.bind(this);
-  }
+function FormularioCadastro() {
+  return (
+    <form>
+      <TextField
+        id="nome"
+        label="Nome"
+        variant="outlined"
+        margin="normal"
+        fullWidth
+      />
+      <TextField
+        id="Sobrenome"
+        label="Sobrenome"
+        margin="normal"
+        variant="outlined"
+        fullWidth
+      />
+      <TextField
+        id="cpf"
+        label="CPF"
+        variant="outlined"
+        margin="normal"
+        fullWidth
+      />
 
-  componentDidMount(){
-    this.props.categorias.inscrever( this._novasCategorias);
-    
-  }
+      <FormControlLabel
+        label="Promoções"
+        control={<Switch name="promocoes" defaultChecked color="primary" />}
+      />
+      <FormControlLabel
+        label="Novidades"
+        control={<Switch name="novidades" defaultChecked color="primary" />}
+      />
 
-  componentWillUnmount(){
-    this.props.categorias.desinscrever( this._novasCategorias);
-  }
-  _novasCategorias(categorias){
-    this.setState({...this.state, categorias})
-  }
-  _handleMudancaCategoria(evento){
-    evento.stopPropagation();
-    this.categoria = evento.target.value;
-  }
-  _handleMudancaTitulo(evento) {
-    evento.stopPropagation();
-    this.titulo = evento.target.value;
-  }
-
-  _handleMudancaTexto(evento) {
-    evento.stopPropagation();
-    this.texto = evento.target.value;
-  }
-
-  _criarNota(evento) {
-    evento.preventDefault();
-    evento.stopPropagation();
-    this.props.criarNota(this.titulo, this.texto, this.categoria);
-  }
-
-  render() {
-    return (
-      <form className="form-cadastro" onSubmit={this._criarNota.bind(this)}>
-        <select
-          onChange={this._handleMudancaCategoria.bind(this)}
-          className="form-cadastro_input"
-        >
-          <option>Sem Categoria</option>
-
-          {this.state.categorias.map((categoria, index) => {
-            return <option key={index} >{categoria}</option>;
-          })}
-        </select>
-        <input
-          type="text"
-          placeholder="Título"
-          className="form-cadastro_input"
-          onChange={this._handleMudancaTitulo.bind(this)}
-        />
-        <textarea
-          rows={15}
-          placeholder="Escreva sua nota..."
-          className="form-cadastro_input"
-          onChange={this._handleMudancaTexto.bind(this)}
-        />
-        <button className="form-cadastro_input form-cadastro_submit">
-          Criar Nota
-        </button>
-      </form>
-    );
-  }
+      <Button type="submit" variant="contained" color="primary">
+        Cadastrar
+      </Button>
+    </form>
+  );
 }
 
 export default FormularioCadastro;
